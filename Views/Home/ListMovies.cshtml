@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "All Movies";
+    ViewData["Tab"] = "Movie List";
+}
+@model  IEnumerable<Assignment3.Models.NewMovie>
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+
+    <p>View your movies here.</p>
+
+    <table border="1" cellspacing="50">
+        <thead border="1 ellspacing="50">
+            <tr>Category&emsp;</tr>
+            <tr>Title&emsp;</tr>
+            <tr>Year&emsp;</tr>
+            <tr>Director&emsp;</tr>
+            <tr>Rating&emsp;</tr>
+            <tr>Edited&emsp;</tr>
+            <tr>Lent To&emsp;</tr>
+            <tr>Notes</tr>
+        </thead>
+        <tbody>
+            @foreach (Assignment3.Models.NewMovie x in Model)
+            {
+                if (x.Title != "Independence Day")
+                {
+                    <tr>
+                        <td>@x.Category&emsp;</td>
+                        <td>@x.Title&emsp;</td>
+                        <td>@x.Year&emsp;</td>
+                        <td>@x.Director&emsp;</td>
+                        <td>@x.Rating&emsp;</td>
+                        <td>@x.Edited&emsp;</td>
+                        <td>@x.Lent&emsp;</td>
+                        <td>@x.Notes</td>
+                    </tr>
+                }
+                else
+                {
+                    //don't add this value to visual
+                }
+
+            }
+        </tbody>
+    </table>
+
+</div>
+<br />

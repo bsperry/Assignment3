@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Confirmation";
+    ViewData["Tab"] = "Confirmation";
+    ViewData["Movie"] = Model.Title;
+}
+@model Assignment3.Models.NewMovie
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model.Title == "Independence Day")
+    {
+        @: @ViewData["Movie"] was technically added but Professor Hilton said to hid it, so you won't see it in the All Movies list. 
+    }
+    else
+    {
+        @:Thank you for your submission. @ViewData["Movie"] has be successfully added.
+    }
+    <br />
+    Click <a asp-action="ListMovies">here to all movies</a>
+
+</div>
+<br />
