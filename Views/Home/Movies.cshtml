@@ -7,9 +7,9 @@
 @model Assignment3.Models.NewMovie
 
 <div class="text-center">
-<h1>@ViewData["Title"]</h1>
+    <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to enter movies.</p>
+    <p>Use this page to enter movies.</p>
 </div>
 <br />
 
@@ -66,6 +66,8 @@
 
     <button type="submit">Add Movie</button>
     <button type="reset">Reset Form</button>
+
+    <div asp-validation-summary="All"></div>
 
 
 </form>

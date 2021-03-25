@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Assignment3.Models;
+using Assignment3.Models.ViewModels;
+
 
 namespace Assignment3.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        //for the movie context
+        private MovieListContext context { get; set; }
+
+        //constructor for mocie context
+        public HomeController(MovieListContext con)
         {
-            _logger = logger;
+            context = con;
         }
+
 
         //for the home page view (contains the picture of joel)
         public IActionResult Index()
@@ -37,19 +44,64 @@ namespace Assignment3.Controllers
             return View();
         }
 
+       
         //for the movies form 
         [HttpPost]
         public IActionResult Movies(NewMovie movie)
         {
-            TempStorage.AddMovie(movie);
+            if (ModelState.IsValid)
+            {
+                context.Movies.Add(movie);
+                context.SaveChanges();
+            }
             return View("Confirmation", movie);
         }
 
         //for listing/viewing all the movies
-
+        [HttpGet]
         public IActionResult ListMovies()
         {
-            return View(TempStorage.Movies);
+            return View(new RatingsViewModel
+            {
+                G = context.Movies.Where(x => x.Rating == "G"),
+                PG = context.Movies.Where(x => x.Rating == "PG"),
+                PG13 = context.Movies.Where(x => x.Rating == "PG-13"),
+                R = context.Movies.Where(x => x.Rating == "R")
+            });
+        }
+
+        //for editing movie
+        [HttpPost]
+        public IActionResult ListMovie(NewMovie movie)
+        {
+            return View("EditMovie", movie);
+        }
+
+        [HttpGet]
+        public IActionResult EditMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditMovie(NewMovie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Update(context.Movies.Where(x=> x.MovieId == movie.MovieId));
+                //context.Update<NewMovie>(movie);
+                context.SaveChanges();
+
+            }
+            return View("Confirmation", movie);
+        }
+        //delete movie
+        [HttpGet]
+        public IActionResult DeleteMovie(NewMovie movie)
+        {
+            context.Remove(context.Movies.Where(x => x.MovieId == movie.MovieId));
+            context.SaveChanges();
+            return View("ListMovies", movie);
         }
 
 

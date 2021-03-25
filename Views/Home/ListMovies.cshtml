@@ -5,26 +5,66 @@
     ViewData["Title"] = "All Movies";
     ViewData["Tab"] = "Movie List";
 }
-@model  IEnumerable<Assignment3.Models.NewMovie>
+@model RatingsViewModel
 
 <div>
     <h1>@ViewData["Title"]</h1>
 
-    <p>View your movies here.</p>
+    <h2>G Rated Movies</h2>
 
     <table border="1" cellspacing="50">
-        <thead border="1 ellspacing="50">
+        <thead border="1" ellspacing="50">
             <tr>Category&emsp;</tr>
             <tr>Title&emsp;</tr>
             <tr>Year&emsp;</tr>
             <tr>Director&emsp;</tr>
-            <tr>Rating&emsp;</tr>
             <tr>Edited&emsp;</tr>
             <tr>Lent To&emsp;</tr>
             <tr>Notes</tr>
         </thead>
         <tbody>
-            @foreach (Assignment3.Models.NewMovie x in Model)
+            @foreach (var x in Model.G)
+            {
+                if (x.Title != "Independence Day")
+                {
+            <tr>
+                <td>@x.Category&emsp;</td>
+                <td>@x.Title&emsp;</td>
+                <td>@x.Year&emsp;</td>
+                <td>@x.Director&emsp;</td>
+                <td>@x.Rating&emsp;</td>
+                <td>@x.Edited&emsp;</td>
+                <td>@x.Lent&emsp;</td>
+                <td>@x.Notes</td>
+                <td><a asp-action="EditMovie">Edit movies</a></td>
+                <!--<a asp-action="EditMovie">here to edit movies</a>-->
+                <td><a asp-action="DeleteMovie">Delete movies</a></td>
+
+            </tr>
+                }
+                else
+                {
+                    //don't add this value to visual
+                }
+            }
+        </tbody>
+    </table>
+
+    <br /> <br />
+    <h2>PG Rated Movies</h2>
+
+    <table border="1" cellspacing="50">
+        <thead border="1" ellspacing="50">
+            <tr>Category&emsp;</tr>
+            <tr>Title&emsp;</tr>
+            <tr>Year&emsp;</tr>
+            <tr>Director&emsp;</tr>
+            <tr>Edited&emsp;</tr>
+            <tr>Lent To&emsp;</tr>
+            <tr>Notes</tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.PG)
             {
                 if (x.Title != "Independence Day")
                 {
@@ -33,20 +73,100 @@
                         <td>@x.Title&emsp;</td>
                         <td>@x.Year&emsp;</td>
                         <td>@x.Director&emsp;</td>
-                        <td>@x.Rating&emsp;</td>
                         <td>@x.Edited&emsp;</td>
                         <td>@x.Lent&emsp;</td>
-                        <td>@x.Notes</td>
+                        <td>@x.Notes</td>                
+                        <td><a asp-action="EditMovie">Edit movies</a></td>
+                        <!--<a asp-action="EditMovie">here to edit movies</a>-->
+                        <td><a asp-action="DeleteMovie">Delete movies</a></td>
+
                     </tr>
                 }
                 else
                 {
                     //don't add this value to visual
                 }
-
             }
         </tbody>
     </table>
 
+
+    <br /> <br />
+    <h2>PG-13 Rated Movies</h2>
+
+    <table border="1" cellspacing="50">
+        <thead border="1" ellspacing="50">
+            <tr>Category&emsp;</tr>
+            <tr>Title&emsp;</tr>
+            <tr>Year&emsp;</tr>
+            <tr>Director&emsp;</tr>
+            <tr>Edited&emsp;</tr>
+            <tr>Lent To&emsp;</tr>
+            <tr>Notes</tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.PG13)
+            {
+                if (x.Title != "Independence Day")
+                {
+                    <tr>
+                        <td>@x.Category&emsp;</td>
+                        <td>@x.Title&emsp;</td>
+                        <td>@x.Year&emsp;</td>
+                        <td>@x.Director&emsp;</td>
+                        <td>@x.Edited&emsp;</td>
+                        <td>@x.Lent&emsp;</td>
+                        <td>@x.Notes</td>
+                        <td><a asp-action="EditMovie">Edit movies</a></td>
+                        <!--<a asp-action="EditMovie">here to edit movies</a>-->
+                        <td><a asp-action="DeleteMovie">Delete movies</a></td>
+                    </tr>
+                }
+                else
+                {
+                    //don't add this value to visual
+                }
+            }
+        </tbody>
+    </table>
+
+    <br /> <br />
+    <h2>R Rated Movies</h2>
+
+    <table border="1" cellspacing="50">
+        <thead border="1" ellspacing="50">
+            <tr>Category&emsp;</tr>
+            <tr>Title&emsp;</tr>
+            <tr>Year&emsp;</tr>
+            <tr>Director&emsp;</tr>
+            <tr>Edited&emsp;</tr>
+            <tr>Lent To&emsp;</tr>
+            <tr>Notes</tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.R)
+            {
+                if (x.Title != "Independence Day")
+                {
+                    <tr>
+                        <td>@x.Category&emsp;</td>
+                        <td>@x.Title&emsp;</td>
+                        <td>@x.Year&emsp;</td>
+                        <td>@x.Director&emsp;</td>
+                        <td>@x.Edited&emsp;</td>
+                        <td>@x.Lent&emsp;</td>
+                        <td>@x.Notes</td>         
+                        <td><a asp-action="EditMovie">Edit movies</a></td>
+                        <!--<a asp-action="EditMovie">here to edit movies</a>-->
+                        <td><a asp-action="DeleteMovie">Delete movies</a></td>
+                    </tr>
+                }
+                else
+                {
+                    //don't add this value to visual
+                }
+            }
+        </tbody>
+    </table>
 </div>
 <br />

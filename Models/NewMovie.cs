@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace Assignment3.Models
 {
     public class NewMovie
     {
+        [Key]
+        public int MovieId { get; set; }
+
         [Required(ErrorMessage = "Please select the movie category.")]
         public string Category { get; set; }
         [Required(ErrorMessage = "Please enter the movie title.")]
@@ -16,11 +20,11 @@ namespace Assignment3.Models
         public string Year { get; set; }
         [Required(ErrorMessage = "Please enter the movie director.")]
         public string Director { get; set; }
-        [Required(ErrorMessage ="Please select the movie rating.")]
+        [Required(ErrorMessage = "Please select the movie rating.")]
         public string Rating { get; set; }
         public bool Edited { get; set; }
         public string Lent { get; set; }
-        [StringLength(25,ErrorMessage ="Notes can only be 25 characters long.") ]
+        [StringLength(25, ErrorMessage = "Notes can only be 25 characters long.")]
         public string Notes { get; set; }
 
     }
